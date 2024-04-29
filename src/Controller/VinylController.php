@@ -37,9 +37,7 @@ class VinylController extends AbstractController
     public function browse(VinylMixRepository $mixRepository, string $slug = null): Response
     {
         $genre = $slug ? u(str_replace('-', ' ', $slug))->title(true) : null;
-
-        $mixes = $mixRepository->findBy([], ['votes' => 'DESC']);
-
+        $mixes = $mixRepository->findAll();
         return $this->render('vinyl/browse.html.twig', [
             'genre' => $genre,
             'mixes' => $mixes,
