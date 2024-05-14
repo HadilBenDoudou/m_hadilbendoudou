@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+<style>
+    .container {
+        background-color: #17242C;
+        color: #FFFFFF;
+
+    }
+
+    .form-group {
+        border-color: #17242C;
+
+    }
+
+    .btn-primary {
+        background-color: #17242C;
+
+        border-color: #17242C;
+
+    }
+
+    .btn-primary:hover {
+        background-color: #0D161B;
+
+        border-color: #0D161B;
+
+    }
+
+    .invalid-feedback {
+        color: #FFCCCC;
+
+    }
+</style>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-white" style="background-color: #17242C;">
+                    <h1 class="mb-0">Contactez-nous ✅</h1>
+                </div>
+
+                <div class="card-body">
+                    {{ form_start(contactForm, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+                    <div class="form-group">
+                        {{ form_label(contactForm.name, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(contactForm.name, {'attr': {'class': 'form-control', 'placeholder': 'Votre nom'}}) }}
+                        <div class="invalid-feedback">
+                            {{ form_errors(contactForm.name) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(contactForm.email, 'Votre Email', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(contactForm.email, {'attr': {'class': 'form-control', 'placeholder': 'Votre email'}}) }}
+                        <div class="invalid-feedback">
+                            {{ form_errors(contactForm.email) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(contactForm.subject, 'Sujet', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(contactForm.subject, {'attr': {'class': 'form-control', 'placeholder': 'Sujet'}}) }}
+                        <div class="invalid-feedback">
+                            {{ form_errors(contactForm.subject) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(contactForm.message, 'Message', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(contactForm.message, {'attr': {'class': 'form-control', 'rows': 5, 'placeholder': 'Votre message'}}) }}
+                        <div class="invalid-feedback">
+                            {{ form_errors(contactForm.message) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_widget(contactForm.send, {'attr': {'class': 'btn btn-primary'}}) }}
+                    </div>
+                    {{ form_end(contactForm) }}
+
+                    {% for message in app.flashes('success') %}
+                    <div class="alert alert-success mt-3">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

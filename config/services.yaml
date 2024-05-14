@@ -17,3 +17,5 @@ services:
   App\Controller\VinylController:
     arguments:
       $isDebug: "%kernel.debug%"
+  App\Controller\ContactController:
+    autowire: true
